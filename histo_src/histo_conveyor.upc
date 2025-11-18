@@ -20,7 +20,7 @@ double histo_conveyor(histo_t *data) {
     long long val[1] = {0};
     if (PAPI_library_init(PAPI_VER_CURRENT) != PAPI_VER_CURRENT) papi_ok = 0;
     if (papi_ok && PAPI_create_eventset(&eventset) != PAPI_OK) papi_ok = 0;
-    if (papi_ok && PAPI_add_named_event(eventset, "cray_rapl:::PACKAGE_ENERGY") != PAPI_OK) papi_ok = 0;
+    if (papi_ok && PAPI_add_named_event(eventset, "cray_pm:::PM_ENERGY:MEMORY") != PAPI_OK) papi_ok = 0;
     if (papi_ok && PAPI_start(eventset) != PAPI_OK) papi_ok = 0;
 
     /* --- Everything below is now within the energy window --- */
@@ -46,7 +46,7 @@ double histo_conveyor(histo_t *data) {
     /* --- stop PAPI and compute total energy --- */
     double my_energy = 0.0;
     if (papi_ok && PAPI_stop(eventset, val) == PAPI_OK)
-        my_energy = (double)val[0]/(double)(1000000000);   /* Joules */
+        my_energy = (double)val[0]/(double)(1);   /* Joules */
 
     /* sum across all PEs */
     double total_energy = (double)lgp_reduce_add_l((int64_t)my_energy);

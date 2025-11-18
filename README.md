@@ -1,7 +1,7 @@
 ## Benchmarking Energy Consumption
 - Profile weak scaling experiment for four applications - Triangle Counting, Index Gather, Histogram and Topological Sort.
 
-- The energy counter `cray_rapl:::PACKAGE_ENERGY` is used for instrumentation for all four application codes in AGP and Conveyors version.
+- The energy counter `cray_pm:::PM_ENERGY:MEMORY` and `cray_pm:::PM_ENERGY:NODE` is used for instrumentation for all four application codes in AGP and Conveyors version. Thye both measure the energy drawn in joules. This code repository consists of `memory`, and one should replace it with `node` accordingly. 
 
 - The aim of this experiment is to understand whether the program is power hungry or not?
 
@@ -24,7 +24,6 @@ Refer to [bale](https://github.com/jdevinney/bale) for full repository. This rep
 ├── LICENSE
 ├── README.md
 ├── topo_src
-│   ├── README.md
 │   ├── toposort_agp.upc
 │   ├── toposort_conveyor.upc
 │   ├── toposort.h
