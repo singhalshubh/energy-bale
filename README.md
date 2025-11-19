@@ -3,7 +3,7 @@
 
 - The energy counter `cray_pm:::PM_ENERGY:MEMORY` and `cray_pm:::PM_ENERGY:NODE` is used for instrumentation for all four application codes in AGP and Conveyors version. Thye both measure the energy drawn in joules. This code repository consists of `memory`, and one should replace it with `node` accordingly. 
 
-- The aim of this experiment is to understand whether the program is power hungry or not?
+- The aim of this experiment is to understand whether the program is power hungry or not? In addition, we also measure why AGP takes more energy, attributing to scaling laws of energy for OpenSHMEM APIs. Find the benchmark studies for APIs in `scaling-energy-benchmark`.
 
 ## Directory Structure
 
@@ -21,8 +21,15 @@ Refer to [bale](https://github.com/jdevinney/bale) for full repository. This rep
 │   ├── ig_conveyor.upc
 │   ├── ig.h
 │   └── ig.upc
-├── LICENSE
 ├── README.md
+├── scaling-energy-benchmark
+│   ├── atomic_add.cpp
+│   ├── fetch_add.cpp
+│   ├── fetch_inc.cpp
+│   ├── get.cpp
+│   ├── Makefile
+│   ├── put.cpp
+│   └── run.sh
 ├── topo_src
 │   ├── toposort_agp.upc
 │   ├── toposort_conveyor.upc
@@ -34,7 +41,7 @@ Refer to [bale](https://github.com/jdevinney/bale) for full repository. This rep
     ├── triangle.h
     └── triangle.upc
 
-4 directories, 19 files
+5 directories, 24 files
 ```
 
 ## Conclusions
